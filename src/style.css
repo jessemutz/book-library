@@ -1,0 +1,103 @@
+/*
+ *=== Set variables =============================
+ */
+:where(html) {
+  --brand-lightness: 77%;
+  --brand-chroma: 0.18;
+  --brand-hue: 218;
+
+  --brand: oklch(var(--brand-lightness) var(--brand-chroma) var(--brand-hue));
+
+  --brand-light: oklch(calc(var(--brand-lightness)*1.298) calc(var(--brand-chroma)/5) var(--brand-hue));
+  --text-light: oklch(calc(var(--brand-lightness)/5) calc(var(--brand-chroma)/5) var(--brand-hue));
+
+  --brand-dark: oklch(calc(var(--brand-lightness)/2) var(--brand-chroma) var(--brand-hue));
+  --brand-darkest: oklch(calc(var(--brand-lightness)/5) calc(var(--brand-chroma)/5) var(--brand-hue));
+  --text-dark: oklch(calc(var(--brand-lightness)*1.2) calc(var(--brand-chroma)/3) var(--brand-hue));
+}
+
+:root {
+  --color-background: var(--brand-light);
+  --color-text: var(--text-light);
+
+  --font-base: system-ui, Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: monospace;
+  --size-base: 1rem;
+  --size-lg: calc(2 * var(--size-base));
+  --size-xl: calc(3 * var(--size-base));
+  --size-xxl: calc(5 * var(--size-base));
+
+  --transition: background-color ease-out 250ms;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--brand-darkest);
+    --color-text: var(--text-dark);
+  }
+}
+
+/*
+ *=== Base theme ================================
+ */
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+p {
+  text-align: center;
+}
+
+a,
+a:visited {
+  color: var(--color-text);
+}
+
+#title {
+  text-align: center;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: var(--size-lg);
+  display: block;
+}
+
+/*
+ *=== Component styles ==========================
+ */
+
+/*
+ *=== Footer ====================================
+ */
+footer {
+  display: flex;
+  font-size: 1.3rem;
+  justify-content: center;
+  margin-top: var(--size-xxl);
+  width: 100%;
+}
+
+.fa-github {
+  color: var(--color-text);
+  transition: all 0.3s ease-in-out;
+}
+
+.copyright {
+  color: var(--color-text);
+  transition: all 0.3s ease-in-out;
+}
+
+.copyright:hover {
+  color: var(--brand);
+}
+
+.copyright:hover .fa-github,
+.fa-github:hover {
+  color: var(--brand);
+  transform: rotate(-45deg) scale(1.2);
+}
